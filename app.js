@@ -33,7 +33,30 @@ App({
       }
     })
   },
+  getData(url,data,callback){
+    var ip=this.globalData.ip;
+    wx.request({
+      url: ip + url,
+      data: data,
+      method: 'GET',
+      complete: function(res) {
+        callback(res)
+      },
+    })
+  },
+  postData(url, data, callback){
+    var ip = this.globalData.IP;
+    wx.request({
+      url: ip + url,
+      data: data,
+      method: 'POST',
+      complete: function (res) {
+        callback(res)
+      },
+    })
+  },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    ip:'http://120.79.193.105/'
   }
 })

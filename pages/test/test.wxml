@@ -1,0 +1,7 @@
+<button bindtap='get_data'>获取</button>
+<rich-text>
+{{article.articleContent}}
+</rich-text>
+<text>
+修改并提交代码
+</text>
