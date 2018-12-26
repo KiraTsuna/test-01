@@ -1,7 +1,19 @@
 <button bindtap='get_data'>获取</button>
 <rich-text>
-{{article.articleContent}}
+{{animals}}
 </rich-text>
+<!-- <button bindtap='get_data'>插入</button> -->
+<form bindsubmit='post_data'>
+名字：<input name='inputName' placeholder='请输入名字'></input>
+属性：<input name='inputDesc' placeholder='请输入属性'></input>
+<button form-type='submit'>提交</button>
+</form>
+<!-- <button bindtap='get_data'>删除</button> -->
+<form bindsubmit='del_data'>
+id：<input name='inputDel' placeholder='请输入删除id'></input>
+<button form-type='submit'>删除</button>
+</form>
+<!-- <button bindtap='get_data'>修改</button> -->
 <text>
 修改并提交代码
 </text>

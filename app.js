@@ -40,12 +40,23 @@ App({
       data: data,
       method: 'GET',
       complete: function(res) {
-        callback(res)
+        callback(res);
       },
     })
   },
   postData(url, data, callback){
-    var ip = this.globalData.IP;
+    var ip = this.globalData.ip;
+    wx.request({
+      url: ip + url,
+      data: data,
+      method: 'POST',
+      complete: function (res) {
+        callback(res)
+      },
+    })
+  },
+  delData(url, data, callback) {
+    var ip = this.globalData.ip;
     wx.request({
       url: ip + url,
       data: data,
