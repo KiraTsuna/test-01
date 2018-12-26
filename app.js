@@ -60,6 +60,17 @@ App({
     wx.request({
       url: ip + url,
       data: data,
+      method: 'GET',
+      complete: function (res) {
+        callback(res)
+      },
+    })
+  },
+  updateData(url, data, callback) {
+    var ip = this.globalData.ip;
+    wx.request({
+      url: ip + url,
+      data: data,
       method: 'POST',
       complete: function (res) {
         callback(res)
@@ -68,6 +79,6 @@ App({
   },
   globalData: {
     userInfo: null,
-    ip:'http://120.79.193.105/'
+    ip:'http://192.168.1.101:81/'
   }
 })

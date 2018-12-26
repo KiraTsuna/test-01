@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    article:null
+    // article:null
+    subject: null
   },
   get_data(){
     var that=this;
@@ -16,11 +17,25 @@ Page({
       title: 'loding',
     })
     // param.animalId=4;
-    app.getData('/animal/selectAnimals', param,res=>{
-      console.log(res)
+    app.getData('/subject/selectSubjects', param,res=>{
+      console.log(res.data.data)
       that.setData({
-        animals: res.data.data.animals
+        animals: res.data.data.subjectDesc
       })
+      wx.hideLoading();
+    })
+  },
+  getbyid_data(e) {
+    var that = this;
+    console.log('输出');
+    var param = {};
+    wx.showLoading({
+      title: 'loding',
+    })
+    param.subjectId = e.detail.value.inputID;
+    app.getData('/subject/selectSubjectById', param, res => {
+      console.log(res.data.data.subject);
+      console.log(e.detail.value);
       wx.hideLoading();
     })
   },
@@ -31,11 +46,16 @@ Page({
     wx.showLoading({
       title: 'loding',
     })
-    param.animalTitle=e.detail.value.inputName;
-    param.animalDesc =e.detail.value.inputDesc;
-    app.postData('/animal/insertAnimal',param,res=>{
+
+    console.log(e.detail.value);
+
+    param.subjectTitle=e.detail.value.inputName;
+    param.subjectDesc =e.detail.value.inputDesc;
+    param.subjectLogo = e.detail.value.inputLogo;
+    param.subjectConcernnum = e.detail.value.inputConcernnum;
+    param.subjectFansnum = e.detail.value.inputFansnum;
+    app.postData('/subject/insertSubject',param,res=>{
       console.log(res);
-      console.log(e.detail.value);
       wx.hideLoading();
     })
 
@@ -44,15 +64,39 @@ Page({
   },
   del_data(e) {
     var that = this;
-    console.log('要提交的数据');
+    console.log('要删除的数据');
     var param = {};
     wx.showLoading({
       title: 'loding',
     })
-    param.animalId = e.detail.value.inputDel;
-    app.delData('/animal/deleteAnimal', param, res => {
+    param.subjectId = e.detail.value.inputDel;
+    app.delData('/subject/deleteSubjectById', param, res => {
       console.log(res);
       console.log(e.detail.value);
+      wx.hideLoading();
+    })
+
+    // 可行----
+    // console.log(e.detail.value);
+  },
+  update_data(e) {
+    var that = this;
+    console.log('要更新的数据');
+    var param = {};
+    wx.showLoading({
+      title: 'loding',
+    })
+    param.subjectId = e.detail.value.inputId;
+    param.subjectTitle = e.detail.value.inputName;
+    param.subjectDesc = e.detail.value.inputDesc;
+    param.subjectLogo = e.detail.value.inputLogo;
+    param.subjectConcernnum = e.detail.value.inputConcernnum;
+    param.subjectFansnum = e.detail.value.inputFansnum;
+    console.log(e.detail.formId);
+    console.log(e.detail.value);
+    app.updateData('/subject/updateSubject', param, res => {
+      console.log(res);
+      
       wx.hideLoading();
     })
 

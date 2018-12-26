@@ -2,10 +2,20 @@
 <rich-text>
 {{animals}}
 </rich-text>
+<form bindsubmit='getbyid_data'>
+id：<input name='inputID' placeholder='请输入删除id'></input>
+<button form-type='submit'>id获取</button>
+</form>
+<rich-text>
+{{subject}}
+</rich-text>
 <!-- <button bindtap='get_data'>插入</button> -->
 <form bindsubmit='post_data'>
 名字：<input name='inputName' placeholder='请输入名字'></input>
 属性：<input name='inputDesc' placeholder='请输入属性'></input>
+标志：<input name='inputLogo' placeholder='请输入标志'></input>
+num：<input name='inputConcernnum' placeholder='请输入num'></input>
+商标name：<input name='inputFansnum' placeholder='请输入商标name'></input>
 <button form-type='submit'>提交</button>
 </form>
 <!-- <button bindtap='get_data'>删除</button> -->
@@ -13,7 +23,28 @@
 id：<input name='inputDel' placeholder='请输入删除id'></input>
 <button form-type='submit'>删除</button>
 </form>
-<!-- <button bindtap='get_data'>修改</button> -->
+<!-- <button bindtap='get_data'>更新</button> -->
+<form bindsubmit='update_data'>
+<!-- 先从数据库查询数据 ，动态显示在界面上 -->
+<!-- 再根据选择的数据条变动再存储到数据库中 -->
+<view wx:for="{{animals}}" wx:for-index="index" wx:for-item="item">
+<input name='inputId' hidden='true' value='{{item.subjectId}}'></input>
+名字：<input name='inputName' value='{{item.subjectTitle}}'></input>
+属性：<input name='inputDesc' value='{{item.subjectDesc}}'></input>
+标志：<input name='inputLogo' value='{{item.subjectLogo}}'></input>
+num：<input name='inputConcernnum' value='{{item.subjectFansnum}}'></input>
+商标name：<input name='inputFansnum' value='{{item.subjectConcernnum}}'></input>
+<!-- <rich-text>{{item.subjectId}}</rich-text> -->
+<button form-type='submit'>更新</button>
+</view>
+<!-- 名字：<input name='inputName' placeholder='请输入名字'></input>
+属性：<input name='inputDesc' placeholder='请输入属性'></input>
+标志：<input name='inputLogo' placeholder='请输入标志'></input>
+num：<input name='inputConcernnum' placeholder='请输入num'></input>
+商标name：<input name='inputFansnum' placeholder='请输入商标name'></input> -->
+
+
+</form>
 <text>
 修改并提交代码
 </text>
